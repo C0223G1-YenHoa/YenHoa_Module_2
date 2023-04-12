@@ -6,8 +6,8 @@ public class TennisGame {
     public TennisGame() {
     }
 
-    public static void equalPoints(int mScore1) {
-        switch (mScore1) {
+    public static void equalPoints(int player1Score) {
+        switch (player1Score) {
             case 0:
                 score = "Love-All";
                 break;
@@ -27,16 +27,16 @@ public class TennisGame {
         }
     }
 
-    public static void greaterThan4(int mScore1, int mScore2) {
-        int minusResult = mScore1 - mScore2;
+    public static void greaterThan4(int playerScore1, int playerScore2) {
+        int minusResult = playerScore1 - playerScore2;
         if (minusResult == 1) score = "Advantage player1";
         else if (minusResult == -1) score = "Advantage player2";
         else if (minusResult >= 2) score = "Win for player1";
         else score = "Win for player2";
     }
 
-    public static void remainCase(int mScore1, int mScore2) {
-        switch (mScore1) {
+    public static void remainCase(int player1Score, int player2Score) {
+        switch (player1Score) {
             case 0:
                 score += "Love -";
                 break;
@@ -50,7 +50,7 @@ public class TennisGame {
                 score += "Forty - ";
                 break;
         }
-        switch (mScore2) {
+        switch (player2Score) {
             case 0:
                 score += "Love ";
                 break;
@@ -66,13 +66,13 @@ public class TennisGame {
         }
     }
 
-    public static String getScore(int mScore1, int mScore2) {
-        if (mScore1 == mScore2) {
-            TennisGame.equalPoints(mScore1);
-        } else if (mScore1 >= 4 || mScore2 >= 4) {
-            TennisGame.greaterThan4(mScore1, mScore2);
+    public static String getScore(int player1Score, int player2Score) {
+        if (player1Score == player2Score) {
+            TennisGame.equalPoints(player1Score);
+        } else if (player1Score >= 4 || player2Score >= 4) {
+            TennisGame.greaterThan4(player1Score, player2Score);
         } else {
-            TennisGame.remainCase(mScore1, mScore2);
+            TennisGame.remainCase(player1Score, player2Score);
         }
         return score;
     }
