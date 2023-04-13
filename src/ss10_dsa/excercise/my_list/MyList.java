@@ -15,14 +15,15 @@ public class MyList<E> {
         elements = new Object[capacity];
     }
 
+    public Object[] getElements() {
+        return elements;
+    }
+
     private void ensureCapacity() {
         int newSize = elements.length + 1;
         elements = Arrays.copyOf(elements, newSize);
     }
 
-    public int getSize() {
-        return size;
-    }
 
     public void add(E element) {
         if (size == elements.length) {
@@ -33,7 +34,7 @@ public class MyList<E> {
 
     public void checkIndex(int index) {
         if (index >= size || index < 0) {
-            throw new IndexOutOfBoundsException  ("index " + index + " out of bounds");
+            throw new IndexOutOfBoundsException("index " + index + " out of bounds");
         }
     }
 
@@ -53,7 +54,6 @@ public class MyList<E> {
     }
 
     public String toString() {
-
         return "MyList" +
                 Arrays.toString(elements);
 
