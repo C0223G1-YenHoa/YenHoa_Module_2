@@ -5,28 +5,27 @@ import java.util.Stack;
 
 public class CheckBracket {
     public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
-        System.out.println("Nhập biểu thức: ");
-        String string=sc.nextLine();
-        String[] array;
-        array=string.split("");
-        Stack<String> bStack=new Stack<>();
-        // 2 .. Với mỗi ký hiệu sym trong đoạn (từ trái sang phải):
-        for (String s: array) {
-            // 2.1. Nếu sym là dấu ngoặc trái:
-        if(s.equals("(")){
-            // 2.1.1. Đưa sym vào bStack.
-            bStack.push(s);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Nhập chuỗi: ");
+        String string = sc.nextLine();
+        Stack<Character> stack1 = new Stack<>();
+        Stack<Character> stack2 = new Stack<>();
+        boolean flag = true;
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) == '(') {
+                stack1.push(string.charAt(i));
+            } else if (string.charAt(i) == ')') {
+                stack2.push(string.charAt(i));
+            }
+            if (stack2.size() > stack1.size()) {
+                flag = false;
+                break;
+            }
         }
-        //2.2 Nếu sym là dấu ngoặc phải:
-        else if(s.equals(")")){
-            //2.2.1. Nếu bStack rỗng, return false.
-                if (bStack.isEmpty()){
-                    return false;
-                }
-                //2.2.2. Lấy dấu ngoặc ở bStack, đưa vào biến left.
-                else if ()
-        }
+        if (flag && stack2.size() == stack1.size()) {
+            System.out.println(true);
+        } else {
+            System.out.println(false);
         }
     }
 }
