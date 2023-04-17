@@ -9,11 +9,10 @@ public class CountWord {
         Map<String, Integer> map = new TreeMap<>();
         String[] array = str.split(" ");
         for (String s : array) {
-            String a = s.toUpperCase();
-            if (map.containsKey(a)) {
-                map.put(a, map.get(a) + 1);
+            if (map.containsKey(s.toUpperCase())) {
+                map.put(s.toUpperCase(),map.get(s.toUpperCase())+1);
             } else {
-                map.put(a, 1);
+                map.put(s.toUpperCase(), 1);
             }
         }
         System.out.println(map);
