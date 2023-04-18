@@ -8,8 +8,8 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class ProductRepo implements IProductRepo {
-    Scanner sc = new Scanner(System.in);
-    public static ArrayList<Product> productList = new ArrayList<>();
+    private final Scanner sc = new Scanner(System.in);
+    private static final ArrayList<Product> productList = new ArrayList<>();
 
     static {
         productList.add(new Product(1, "IPhone", 12000000));
@@ -18,11 +18,9 @@ public class ProductRepo implements IProductRepo {
     }
 
     @Override
-    public void getList() {
-        productList.sort(Comparator.comparing(o -> o.getPrice()));
-        for (Product p : productList) {
-            System.out.println(p);
-        }
+    public ArrayList<Product> getList() {
+        productList.sort(Comparator.comparing(Product::getPrice));
+        return productList;
     }
 
     public void add(Product product) {
@@ -61,15 +59,17 @@ public class ProductRepo implements IProductRepo {
     }
 
     @Override
-    public void find(int productId) {
+    public Product find(int findId) {
         int index = 0;
         for (int i = 1; i < productList.size(); i++) {
-            if (productList.get(i).getId() == productId) {
+            if (productList.get(i).getId() == findId) {
                 index = i;
+                break;
             } else
                 System.out.println("Không tìm thấy mã sản phẩm này.");
         }
-        System.out.println(productList.get(index));
+        return productList.get(index);
     }
+
 }
 

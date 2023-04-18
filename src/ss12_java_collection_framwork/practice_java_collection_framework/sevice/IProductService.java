@@ -8,5 +8,6 @@ public interface IProductService {
     void delete();
 
     void edit();
+
     void find();
 }

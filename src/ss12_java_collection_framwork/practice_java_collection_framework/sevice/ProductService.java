@@ -3,15 +3,19 @@ package ss12_java_collection_framwork.practice_java_collection_framework.sevice;
 import ss12_java_collection_framwork.practice_java_collection_framework.model.Product;
 import ss12_java_collection_framwork.practice_java_collection_framework.repository.ProductRepo;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ProductService implements IProductService {
-    Scanner sc = new Scanner(System.in);
-    ProductRepo productRepo = new ProductRepo();
+    private final Scanner sc = new Scanner(System.in);
+    private final ProductRepo productRepo = new ProductRepo();
 
     @Override
     public void getList() {
-        productRepo.getList();
+        ArrayList<Product> productList= productRepo.getList();
+        for (Product s: productList) {
+            System.out.println(s);
+        }
     }
 
     @Override
@@ -21,7 +25,7 @@ public class ProductService implements IProductService {
         System.out.println("Nhập tên sản phẩm: ");
         String productName = sc.nextLine();
         System.out.println("Nhập giá sản phẩm: ");
-        int productPrice = Integer.parseInt(sc.nextLine());
+        double productPrice = Double.parseDouble(sc.nextLine());
         Product newProduct = new Product(id, productName, productPrice);
         productRepo.add(newProduct);
     }
@@ -48,9 +52,9 @@ public class ProductService implements IProductService {
         System.out.println("Nhập tên sản phẩm :");
         String name = sc.nextLine();
         System.out.println("Nhập giá sản phẩm: ");
-        int price = Integer.parseInt(sc.nextLine());
+        double price = Double.parseDouble(sc.nextLine());
         Product product = new Product(id, name, price);
-        boolean isEdit = productRepo.edit(productId,product);
+        boolean isEdit = productRepo.edit(productId, product);
         if (isEdit) {
             System.out.println("Bạn đã sửa thành công!");
         } else
@@ -60,9 +64,8 @@ public class ProductService implements IProductService {
     @Override
     public void find() {
         System.out.println("Nhập vào mã sản phẩm bạn muốn tìm: ");
-        int findId=Integer.parseInt(sc.nextLine());
-        productRepo.find(findId);
-
+        int findId = Integer.parseInt(sc.nextLine());
+        System.out.println(productRepo.find(findId));
     }
 
 }

@@ -5,8 +5,8 @@ import ss12_java_collection_framwork.practice_java_collection_framework.sevice.P
 import java.util.Scanner;
 
 public class ProductController {
-    Scanner sc = new Scanner(System.in);
-    ProductService productService = new ProductService();
+    private final Scanner sc = new Scanner(System.in);
+    private final ProductService productService = new ProductService();
 
     public void showList() {
         boolean isFlag = true;
