@@ -6,8 +6,8 @@ import java.util.List;
 
 public class CopyFile {
     public static void main(String[] args) {
-        String PATH = "src/ss16_io_file/copy_file/source_file";
-        File file = new File(PATH);
+        String PATH_SOURCE = "src/ss16_io_file/copy_file/source_file";
+        File file = new File(PATH_SOURCE);
         FileWriter fileWriter;
         BufferedWriter bufferedWriter = null;
         try {
@@ -28,9 +28,8 @@ public class CopyFile {
         }
 
 
-        String PATH1 = "src/ss16_io_file/copy_file/source_file";
         List<String> strings = new ArrayList<>();
-        File file1 = new File(PATH1);
+        File file1 = new File(PATH_SOURCE);
         FileReader fileReader;
         BufferedReader bufferedReader = null;
         String s;
@@ -56,8 +55,8 @@ public class CopyFile {
             }
         }
 
-        String PATH2 = "src/ss16_io_file/copy_file/target_file";
-        File file2 = new File(PATH2);
+        String PATH_TARGET = "src/ss16_io_file/copy_file/target_file";
+        File file2 = new File(PATH_TARGET);
         FileWriter fileWriter2;
         BufferedWriter bufferedWriter2 = null;
         int count = 0;
@@ -76,7 +75,9 @@ public class CopyFile {
             e.printStackTrace();
         } finally {
             try {
-                bufferedWriter2.close();
+                if (bufferedWriter2 != null) {
+                    bufferedWriter2.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

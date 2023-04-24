@@ -9,8 +9,8 @@ import java.util.List;
 
 public class ReadFile {
     public static void main(String[] args) {
-        String PATH="src/ss16_io_file/read_file/countries.csv";
-        File file=new File(PATH);
+        String PATH_COUNTRIES="src/ss16_io_file/read_file/countries.csv";
+        File file=new File(PATH_COUNTRIES);
         BufferedReader br = null;
         try {
             String line;
