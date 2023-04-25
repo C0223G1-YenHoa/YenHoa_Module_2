@@ -24,30 +24,12 @@ public class ProductManagementController {
                     productService.getList();
                     break;
                 case 2:
-                    System.out.println("Nhập mã sản phẩm: ");
-                    int id=Integer.parseInt(sc.nextLine());
-                    System.out.println("Nhập tên sản phẩm: ");
-                    String name=sc.nextLine();
-                    System.out.println("Nhập giá sản phẩm: ");
-                    double price=Double.parseDouble(sc.nextLine());
-                    System.out.println("Nhập Hãng sản xuất: ");
-                    String brand=sc.nextLine();
-                    System.out.println("Mô tả sản phẩm: ");
-                    String description=sc.nextLine();
-                    Product newProduct=new Product(id,name,price,brand,description);
-                    productService.add(newProduct);
+                    productService.add();
                     break;
                 case 3:
                     System.out.println("Nhập mã sản phẩm bạn muốn tìm: ");
                     int findId=Integer.parseInt(sc.nextLine());
-                    boolean checkId= productService.isCheck(findId);
-                    if(!checkId){
-                        System.out.println("Không tìm thấy sản phẩm này.");
-                        break;
-                    } else {
-                        productService.findId(findId);
-                    }
-
+                    productService.findId(findId);
                     break;
                 case 4:
                     System.out.println("Bạn muốn thoát khỏi hệ thống?\n" +
