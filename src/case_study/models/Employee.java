@@ -1,48 +1,36 @@
 package case_study.models;
 
-public class Employee extends Person {
-    private String grade;
-    private String position;
-    private double salary;
+import case_study.services.EnumEmployeeGrade;
+import case_study.services.EnumEmployeePosition;
 
-    private enum Grade {
-        INTERMEDIATE,
-        COLLEGE,
-        UNIVERSITY,
-        AFTER_UNIVERSITY
-    }
-    private enum Position{
-        RECEPTIONIST,
-        SERVER,
-        EXPERT,
-        MONITOR,
-        MANAGER,
-        ADMINISTRATOR
-    }
+public class Employee extends Person {
+    private EnumEmployeeGrade grade;
+    private EnumEmployeePosition position;
+    private double salary;
 
     public Employee() {
     }
 
-    public Employee(int id, String name, String dayOfBirth, boolean gender, int citizenId, int telephoneNumber, String email, String grade, String position, double salary) {
+    public Employee(String id, String name, String dayOfBirth, String gender, String citizenId, String telephoneNumber, String email, EnumEmployeeGrade grade, EnumEmployeePosition position, double salary) {
         super(id, name, dayOfBirth, gender, citizenId, telephoneNumber, email);
         this.grade = grade;
         this.position = position;
         this.salary = salary;
     }
 
-    public String getGrade() {
+    public EnumEmployeeGrade getGrade() {
         return grade;
     }
 
-    public void setGrade(String grade) {
+    public void setGrade(EnumEmployeeGrade grade) {
         this.grade = grade;
     }
 
-    public String getPosition() {
+    public EnumEmployeePosition getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(EnumEmployeePosition position) {
         this.position = position;
     }
 
@@ -56,11 +44,11 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-        return "ID: " + getId()+"  Họ và tên: "+getName()+"  Ngày sinh: "+getDayOfBirth()+"  Giới tính: "+isGender()+"  CCCD: "+getCitizenId()+"  SĐT: "+
-                getTelephoneNumber()+"  Email: "+getEmail()+"  Trình độ: "+getGrade()+"  Vị trí: "+getPosition()+"  Lương: "+getSalary();
+        return "ID: " + getId()+"  Name: "+getName()+"  Day of birth: "+getDayOfBirth()+"  Gender: "+getGender()+"  Citizen ID: "+getCitizenId()+"  Telephone number: "+
+                getTelephoneNumber()+"  Email: "+getEmail()+"  Grade: "+getGrade()+"  Position: "+getPosition()+"  Salary: "+getSalary();
     }
     public String toWrite(){
-        return getId()+","+getName()+","+getDayOfBirth()+","+isGender()+","+getCitizenId()+","+getTelephoneNumber()
+        return getId()+","+getName()+","+getDayOfBirth()+","+getGender()+","+getCitizenId()+","+getTelephoneNumber()
                 +","+getEmail()+","+getGrade()+","+getPosition()+","+getSalary();
     }
 }

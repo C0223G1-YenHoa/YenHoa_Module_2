@@ -1,11 +1,14 @@
 package case_study.controllers;
 
+import case_study.services.EmployeeService;
+
 import java.util.Scanner;
 
 public class FuramaController {
     private static final Scanner sc = new Scanner(System.in);
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
+    private static final EmployeeService employeeService = new EmployeeService();
 
 
     public void displayMainMenu() {
@@ -22,13 +25,13 @@ public class FuramaController {
             int choice = -1;
             try {
                 choice = Integer.parseInt(sc.nextLine());
-                if (choice < 0 || choice > 4) {
+                if (choice < 0 || choice > 6) {
                     throw new Exception("Enter only numbers from 1 to 6");
                 }
             } catch (NumberFormatException e) {
                 System.out.println(ANSI_RED + "Enter only number" + ANSI_RESET);
                 String y = "\uD83C\uDD98";
-                System.out.println( y ) ;
+                System.out.println(y);
             } catch (Exception e) {
                 System.err.println(e);
             }
@@ -55,16 +58,42 @@ public class FuramaController {
                         }
                         switch (choiceEmployee) {
                             case 1:
-                                //Display list employees
+                                employeeService.displayList();
                                 break;
                             case 2:
-                                //Add new employee
+                                employeeService.addEmployee();
                                 break;
                             case 3:
                                 //Edit employee
+                                System.out.print("Enter the employee ID you want to edit: ");
+                                String idUpdate = sc.nextLine();
+                                boolean isEdit = employeeService.checkId(idUpdate);
+                                if (!isEdit) {
+                                    System.out.println("Not found");
+                                } else {
+                                    employeeService.editEmployee(idUpdate);
+                                }
                                 break;
                             case 4:
-                                //Return main menu
+                                System.out.println("Do you want exit Employee Management?\n" +
+                                        "1. Yes\n" +
+                                        "2. No \n" +
+                                        "Enter your choice: ");
+                                int choiceExit = -6;
+                                try {
+                                    choiceExit = Integer.parseInt(sc.nextLine());
+                                    if (choiceExit < 0 || choiceExit > 4) {
+                                        throw new Exception("Enter only numbers from 1 to 4");
+                                    }
+                                } catch (NumberFormatException e) {
+                                    System.out.println(ANSI_RED + "Enter only number" + ANSI_RESET);
+                                } catch (Exception e) {
+                                    System.err.println(e);
+                                }
+                                if (choiceExit == 1) {
+                                    System.out.println("Successful Exit");
+                                    flag1 = false;
+                                }
                                 break;
                         }
                     } while (flag1);
@@ -101,6 +130,25 @@ public class FuramaController {
                                 break;
                             case 4:
                                 //Return main menu
+                                System.out.println("Do you want exit Employee Management?\n" +
+                                        "1. Yes\n" +
+                                        "2. No\n" +
+                                        "Enter your choice: ");
+                                int choiceExit = -6;
+                                try {
+                                    choiceExit = Integer.parseInt(sc.nextLine());
+                                    if (choiceExit < 0 || choiceExit > 4) {
+                                        throw new Exception("Enter only numbers from 1 to 4");
+                                    }
+                                } catch (NumberFormatException e) {
+                                    System.out.println(ANSI_RED + "Enter only number" + ANSI_RESET);
+                                } catch (Exception e) {
+                                    System.err.println(e);
+                                }
+                                if (choiceExit == 1) {
+                                    System.out.println("Successful Exit");
+                                    flag2 = false;
+                                }
                                 break;
                         }
                     } while (flag2);
@@ -137,6 +185,25 @@ public class FuramaController {
                                 break;
                             case 4:
                                 //Return main menu
+                                System.out.println("Do you want exit Employee Management?\n" +
+                                        "1. Yes\n" +
+                                        "2. No\n" +
+                                        "Enter your choice: ");
+                                int choiceExit = -6;
+                                try {
+                                    choiceExit = Integer.parseInt(sc.nextLine());
+                                    if (choiceExit < 0 || choiceExit > 4) {
+                                        throw new Exception("Enter only numbers from 1 to 4");
+                                    }
+                                } catch (NumberFormatException e) {
+                                    System.out.println(ANSI_RED + "Enter only number" + ANSI_RESET);
+                                } catch (Exception e) {
+                                    System.err.println(e);
+                                }
+                                if (choiceExit == 1) {
+                                    System.out.println("Successful Exit");
+                                    flag3 = false;
+                                }
                                 break;
                         }
                     } while (flag3);
@@ -178,6 +245,25 @@ public class FuramaController {
                                 break;
                             case 5:
                                 //Return main menu
+                                System.out.println("Do you want exit Employee Management?\n" +
+                                        "1. Yes\n" +
+                                        "2. No\n" +
+                                        "Enter your choice: ");
+                                int choiceExit = -6;
+                                try {
+                                    choiceExit = Integer.parseInt(sc.nextLine());
+                                    if (choiceExit < 0 || choiceExit > 5) {
+                                        throw new Exception("Enter only numbers from 1 to 5");
+                                    }
+                                } catch (NumberFormatException e) {
+                                    System.out.println(ANSI_RED + "Enter only number" + ANSI_RESET);
+                                } catch (Exception e) {
+                                    System.err.println(e);
+                                }
+                                if (choiceExit == 1) {
+                                    System.out.println("Successful Exit");
+                                    flag4 = false;
+                                }
                                 break;
                         }
                     } while (flag4);
@@ -210,25 +296,35 @@ public class FuramaController {
                                 break;
                             case 3:
                                 //Return main menu
+                                System.out.println("Do you want exit Employee Management?\n" +
+                                        "1. Yes\n" +
+                                        "2. No\n" +
+                                        "Enter your choice: ");
+                                int choiceExit = -6;
+                                try {
+                                    choiceExit = Integer.parseInt(sc.nextLine());
+                                    if (choiceExit < 0 || choiceExit > 3) {
+                                        throw new Exception("Enter only numbers from 1 to 3");
+                                    }
+                                } catch (NumberFormatException e) {
+                                    System.out.println(ANSI_RED + "Enter only number" + ANSI_RESET);
+                                } catch (Exception e) {
+                                    System.err.println(e);
+                                }
+                                if (choiceExit == 1) {
+                                    System.out.println("Successful Exit");
+                                    flag5 = false;
+                                }
                                 break;
                         }
                     } while (flag5);
                     break;
                 case 6:
-                    System.out.println("Do you want exit the app?" +
+                    System.out.println("Do you want exit the app?\n" +
                             "1. Yes\n" +
-                            "2. No");
-                    int choiceExit = -6;
-                    try {
-                        choiceExit = Integer.parseInt(sc.nextLine());
-                        if (choiceExit < 0 || choiceExit > 4) {
-                            throw new Exception("Enter only numbers from 1 to 4");
-                        }
-                    } catch (NumberFormatException e) {
-                        System.out.println(ANSI_RED + "Enter only number" + ANSI_RESET);
-                    } catch (Exception e) {
-                        System.err.println(e);
-                    }
+                            "2. No\n" +
+                            "Enter your choice: ");
+                    int choiceExit = Integer.parseInt(sc.nextLine());
                     if (choiceExit == 1) {
                         System.out.println("Successful Exit");
                         flag = false;

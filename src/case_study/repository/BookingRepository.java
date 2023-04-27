@@ -1,4 +1,10 @@
 package case_study.repository;
 
-public class BookingRepository {
+import java.util.List;
+
+public class BookingRepository implements IBookingRepository{
+    @Override
+    public List getList() {
+        return null;
+    }
 }

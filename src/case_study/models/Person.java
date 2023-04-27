@@ -1,19 +1,19 @@
 package case_study.models;
 
 public abstract class Person {
-    private int id;
+    private String id;
     private String name;
     private String dayOfBirth;
-    private boolean gender;
-    private int citizenId;
-    private int telephoneNumber;
+    private String gender;
+    private String citizenId;
+    private String telephoneNumber;
     private String email;
 
 
     public Person() {
     }
 
-    public Person(int id, String name, String dayOfBirth, boolean gender, int citizenId, int telephoneNumber, String email) {
+    public Person(String id, String name, String dayOfBirth, String gender, String citizenId, String telephoneNumber, String email) {
         this.id = id;
         this.name = name;
         this.dayOfBirth = dayOfBirth;
@@ -23,11 +23,11 @@ public abstract class Person {
         this.email = email;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -47,27 +47,27 @@ public abstract class Person {
         this.dayOfBirth = dayOfBirth;
     }
 
-    public boolean isGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public int getCitizenId() {
+    public String getCitizenId() {
         return citizenId;
     }
 
-    public void setCitizenId(int citizenId) {
+    public void setCitizenId(String citizenId) {
         this.citizenId = citizenId;
     }
 
-    public int getTelephoneNumber() {
+    public String getTelephoneNumber() {
         return telephoneNumber;
     }
 
-    public void setTelephoneNumber(int telephoneNumber) {
+    public void setTelephoneNumber(String telephoneNumber) {
         this.telephoneNumber = telephoneNumber;
     }
 

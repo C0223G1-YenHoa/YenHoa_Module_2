@@ -1,6 +1,8 @@
 package case_study.data;
 
 import case_study.models.Employee;
+import case_study.services.EnumEmployeeGrade;
+import case_study.services.EnumEmployeePosition;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -19,9 +21,9 @@ public class ReadFile {
 
                 if (!((line = br.readLine()) != null && !line.equals(""))) break;
                 String[] employeeArray = line.split(",");
-                Employee employee = new Employee(Integer.parseInt(employeeArray[0]), employeeArray[1], employeeArray[2],
-                        Boolean.parseBoolean(employeeArray[3]), Integer.parseInt(employeeArray[4]), Integer.parseInt(employeeArray[5]), employeeArray[6], employeeArray[7],
-                        employeeArray[8], Double.parseDouble(employeeArray[9]));
+                Employee employee = new Employee(employeeArray[0], employeeArray[1], employeeArray[2],
+                        employeeArray[3], employeeArray[4], employeeArray[5], employeeArray[6], EnumEmployeeGrade.valueOf(employeeArray[7]),
+                        EnumEmployeePosition.valueOf(employeeArray[8]), Double.parseDouble(employeeArray[9]));
                 employeeList.add(employee);
             }
             br.close();
