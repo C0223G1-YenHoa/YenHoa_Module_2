@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadFile {
+public class ReadEmployeeFile {
     public static List<Employee> readEmployee(String path) {
         List<Employee> employeeList = new ArrayList<>();
         File file = new File(path);

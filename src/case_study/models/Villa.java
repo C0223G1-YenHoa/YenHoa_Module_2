@@ -1,6 +1,6 @@
 package case_study.models;
 
-public class Villa extends Facility{
+public class Villa extends Facility {
     private int roomStandard;
     private int poolArea;
     private int floors;
@@ -8,7 +8,7 @@ public class Villa extends Facility{
     public Villa() {
     }
 
-    public Villa(int serviceCode, String serviceName, Double usableArea, Double rentalCosts, int maximumPeople, String rentalType, int roomStandard, int poolArea, int floors) {
+    public Villa(String serviceCode, String serviceName, Double usableArea, Double rentalCosts, int maximumPeople, String rentalType, int roomStandard, int poolArea, int floors) {
         super(serviceCode, serviceName, usableArea, rentalCosts, maximumPeople, rentalType);
         this.roomStandard = roomStandard;
         this.poolArea = poolArea;
@@ -37,5 +37,17 @@ public class Villa extends Facility{
 
     public void setFloors(int floors) {
         this.floors = floors;
+    }
+
+    @Override
+    public String toString() {
+        return "Villa:      Service Code: " + getServiceCode() + " Service Name: " + getServiceName() + " Usable Area: " + getUsableArea()
+                + " Rental Costs: " + getRentalCosts() + " Maximum People: " + getMaximumPeople() + " Rental Type: " + getRentalType() +
+                " Room Standard: " + getRoomStandard() + " Pool Area: " + getPoolArea() + " Floors: " + getFloors();
+    }
+
+    public String toWrite() {
+        return getServiceCode() + "," + getServiceName() + "," + getUsableArea() + "," + getRentalCosts() + "," + getMaximumPeople() + "," +
+                "," + getRentalType() + "," + getRoomStandard() + "," + getPoolArea() + "," + getFloors();
     }
 }

@@ -1,5 +1,6 @@
 package case_study.controllers;
 
+import case_study.services.CustomerService;
 import case_study.services.EmployeeService;
 
 import java.util.Scanner;
@@ -9,6 +10,7 @@ public class FuramaController {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
     private static final EmployeeService employeeService = new EmployeeService();
+    private static final CustomerService customerService= new CustomerService();
 
 
     public void displayMainMenu() {
@@ -120,25 +122,31 @@ public class FuramaController {
                         }
                         switch (choiceCustomer) {
                             case 1:
-                                //Display list customer
+                                customerService.displayList();
                                 break;
                             case 2:
-                                //Add new customer
+                                customerService.add();
                                 break;
                             case 3:
-                                //Edit customer
+                                System.out.print("Enter the customer ID you want to edit: ");
+                                String idUpdate = sc.nextLine();
+                                boolean isEdit = customerService.checkId(idUpdate);
+                                if (!isEdit) {
+                                    System.out.println("Not found");
+                                } else {
+                                    customerService.editCustomer(idUpdate);
+                                }
                                 break;
                             case 4:
-                                //Return main menu
-                                System.out.println("Do you want exit Employee Management?\n" +
+                                System.out.println("Do you want exit Customer Management?\n" +
                                         "1. Yes\n" +
                                         "2. No\n" +
                                         "Enter your choice: ");
                                 int choiceExit = -6;
                                 try {
                                     choiceExit = Integer.parseInt(sc.nextLine());
-                                    if (choiceExit < 0 || choiceExit > 4) {
-                                        throw new Exception("Enter only numbers from 1 to 4");
+                                    if (choiceExit < 0 || choiceExit > 2) {
+                                        throw new Exception("Enter only numbers from 1 to 2");
                                     }
                                 } catch (NumberFormatException e) {
                                     System.out.println(ANSI_RED + "Enter only number" + ANSI_RESET);

@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-public class WriteFile {
+public class WriteEmployeeFile {
     public static void writeEmployee(List<Employee> employeeList, String path) {
         File file = new File(path);
         try {

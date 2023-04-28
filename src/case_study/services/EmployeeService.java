@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeService implements IEmployeeService {
-    private static final Scanner sc = new Scanner(System.in);
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_RED = "\u001B[31m";
+    private  final Scanner sc = new Scanner(System.in);
+    public  final String ANSI_RESET = "\u001B[0m";
+    public  final String ANSI_RED = "\u001B[31m";
     private final EmployeeRepository employeeRepository = new EmployeeRepository();
 
 
@@ -307,8 +307,8 @@ public class EmployeeService implements IEmployeeService {
                     int choiceExit = -6;
                     try {
                         choiceExit = Integer.parseInt(sc.nextLine());
-                        if (choiceExit < 0 || choiceExit > 4) {
-                            throw new Exception("Enter only numbers from 1 to 4");
+                        if (choiceExit < 0 || choiceExit > 2) {
+                            throw new Exception("Enter only numbers from 1 to 2");
                         }
                     } catch (NumberFormatException e) {
                         System.out.println(ANSI_RED + "Enter only number" + ANSI_RESET);
