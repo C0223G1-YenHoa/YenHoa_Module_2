@@ -11,10 +11,8 @@ public class Practice_1 {
         int countSnt = 0;
         int sum = 0;
         for (int i = 2; i < 1000; i++) {
-            if (countSnt <= numbers) {
-                if (!checkIsPrime(i)) {
-                   sum+=0;
-                } else {
+            if (countSnt < numbers) {
+                if (checkIsPrime(i)) {
                     countSnt++;
                     sum += i;
                 }
