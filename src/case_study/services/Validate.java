@@ -11,6 +11,9 @@ public class Validate {
     private static final String PATTERN_DAY = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])$";
     private static final String PATTERN_CITIZEN="[0-9]{9,12}";
     private static final String PATTERN_PHONE="0[0-9]{9}";
+    private static final String PATTERN_VL_CODE="^(SVVL)-[0-9]{4}$";
+    private static final String PATTERN_HO_CODE="^(SVHO)-[0-9]{4}$";
+    private static final String PATTERN_RO_CODE="^(SVRO)-[0-9]{4}$";
 
     public static boolean regexId(String id){
         return Pattern.matches(PATTERN_ID,id);
@@ -37,4 +40,14 @@ public class Validate {
     public static boolean regexPhone(String phoneNumber){
         return Pattern.matches(PATTERN_PHONE,phoneNumber);
     }
+    public static boolean regexVl(String vlCode){
+        return Pattern.matches(PATTERN_VL_CODE,vlCode);
+    }
+    public static boolean regexHO(String hoCode){
+        return Pattern.matches(PATTERN_HO_CODE,hoCode);
+    }
+    public static boolean regexRO(String roCode){
+        return Pattern.matches(PATTERN_RO_CODE,roCode);
+    }
+
 }

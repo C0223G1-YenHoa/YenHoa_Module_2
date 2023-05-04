@@ -67,4 +67,9 @@ public abstract class Facility {
     public void setRentalType(String rentalType) {
         this.rentalType = rentalType;
     }
+
+    public String toWrite() {
+        return getServiceCode() + "," + getServiceName() + "," + getUsableArea() + "," + getRentalCosts() + "," + getMaximumPeople() + "," +
+                "," + getRentalType();
+    }
 }

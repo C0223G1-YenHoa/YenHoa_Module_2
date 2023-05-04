@@ -29,16 +29,27 @@ public class CustomerService implements ICustomerService {
         do {
             System.out.print("ID:(KH-xxxx) ");
             idCustomer = sc.nextLine();
-            if (!Validate.regexCustomerId(idCustomer)) {
-                System.out.println("Wrong format input");
+            try {
+                if (!Validate.regexCustomerId(idCustomer)) {
+                    throw new Exception("Wrong format input");
+                }
+                if (customerRepository.checkId(idCustomer)) {
+                    throw new Exception("This code already exists");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } while (!Validate.regexCustomerId(idCustomer));
         String name;
         do {
             System.out.print("Name:(Yến Hoa) ");
             name = sc.nextLine();
-            if (!Validate.regexName(name)) {
-                System.out.println("Wrong format input");
+            try {
+                if (!Validate.regexName(name)) {
+                    throw new Exception("Wrong format input");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } while (!Validate.regexName(name));
         String dayOfBirth;
@@ -47,10 +58,14 @@ public class CustomerService implements ICustomerService {
             System.out.print("Day of birth:(2000-01-10) ");
             dayOfBirth = sc.nextLine();
             LocalDate day = LocalDate.parse(dayOfBirth);
-            if (Validate.regexDay(dayOfBirth) && Validate.regexAge(day) >= 18) {
-                flag = false;
-            } else {
-                System.out.println("Wrong format input and Under 18 years old !");
+            try {
+                if (Validate.regexDay(dayOfBirth) && Validate.regexAge(day) >= 18) {
+                    flag = false;
+                } else {
+                    throw new Exception("Wrong format input and Under 18 years old !");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } while (flag);
         System.out.print("Gender: \n" +
@@ -68,16 +83,24 @@ public class CustomerService implements ICustomerService {
         do {
             System.out.print("Citizen ID:(9-12 numbers) ");
             citizenId = sc.nextLine();
-            if (!Validate.regexCitizen(citizenId)) {
-                System.out.println("Wrong format input");
+            try {
+                if (!Validate.regexCitizen(citizenId)) {
+                    throw new Exception("Wrong format input");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } while (!Validate.regexCitizen(citizenId));
         String telephone;
         do {
             System.out.print("Telephone number:(10 numbers) ");
             telephone = sc.nextLine();
-            if (!Validate.regexPhone(telephone)) {
-                System.out.println("Wrong format input");
+            try {
+                if (!Validate.regexPhone(telephone)) {
+                    throw new Exception("Wrong format input");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } while (!Validate.regexPhone(telephone));
         System.out.print("Email: ");
@@ -108,8 +131,7 @@ public class CustomerService implements ICustomerService {
                 type = EnumCustomerType.MEMBER;
                 break;
         }
-        System.out.println("Address: \n" +
-                "Enter your choice: ");
+        System.out.println("Address: \n");
         String address = sc.nextLine();
         Customer newCustomer = new Customer(idCustomer, name, dayOfBirth, gender, citizenId, telephone, email, type, address);
         customerRepository.addCustomer(newCustomer);

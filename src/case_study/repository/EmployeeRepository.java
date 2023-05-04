@@ -39,7 +39,8 @@ public class EmployeeRepository implements IEmployeeRepository {
     @Override
 
     public void editEmployee(Employee updateEmployee) {
-        for (int i = 0; i < employeeList.size(); i++) {
+        int size= employeeList.size();
+        for (int i = 0; i < size; i++) {
             if (employeeList.get(i).getId() == updateEmployee.getId()) {
                 employeeList.remove(i);
                 employeeList.add(i, updateEmployee);

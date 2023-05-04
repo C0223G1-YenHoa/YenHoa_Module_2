@@ -1,4 +1,15 @@
 package case_study.repository;
 
-public interface IContractRepository extends IRepository{
+import case_study.models.Booking;
+import case_study.models.Contract;
+
+import java.util.Queue;
+
+public interface IContractRepository{
+     void createContract(Contract contract);
+     Queue<Contract> getListContract();
+     Queue<Booking> getBookingQueue();
+     void editContract(Contract contract);
+     Contract findContract(String code);
+     boolean checkBookingCode(String bookingCode);
 }

@@ -18,7 +18,6 @@ public class ReadEmployeeFile {
             BufferedReader br = new BufferedReader(fr);
             String line = null;
             while (true) {
-
                 if (!((line = br.readLine()) != null && !line.equals(""))) break;
                 String[] employeeArray = line.split(",");
                 Employee employee = new Employee(employeeArray[0], employeeArray[1], employeeArray[2],

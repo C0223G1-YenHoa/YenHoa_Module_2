@@ -1,23 +1,23 @@
 package case_study.models;
 
 public class House extends Facility {
-    private int roomStandard;
+    private String roomStandard;
     private int floors;
 
     public House() {
     }
 
-    public House(String serviceCode, String serviceName, Double usableArea, Double rentalCosts, int maximumPeople, String rentalType, int roomStandard, int floors) {
+    public House(String serviceCode, String serviceName, Double usableArea, Double rentalCosts, int maximumPeople, String rentalType, String roomStandard, int floors) {
         super(serviceCode, serviceName, usableArea, rentalCosts, maximumPeople, rentalType);
         this.roomStandard = roomStandard;
         this.floors = floors;
     }
 
-    public int getRoomStandard() {
+    public String getRoomStandard() {
         return roomStandard;
     }
 
-    public void setRoomStandard(int roomStandard) {
+    public void setRoomStandard(String roomStandard) {
         this.roomStandard = roomStandard;
     }
 
@@ -37,7 +37,7 @@ public class House extends Facility {
     }
 
     public String toWrite() {
-        return getServiceCode() + "," + getServiceName() + "," + getUsableArea() + "," + getRentalCosts() + "," + getMaximumPeople() + "," +
+        return getServiceCode() + "," + getServiceName() + "," + getUsableArea() + "," + getRentalCosts() + "," + getMaximumPeople() +
                 "," + getRentalType() + "," + getRoomStandard() + "," + getFloors();
     }
 }

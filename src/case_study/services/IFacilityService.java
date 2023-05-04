@@ -1,4 +1,10 @@
 package case_study.services;
 
-public interface IFacilityService extends IService{
+import case_study.models.Facility;
+
+public interface IFacilityService{
+    void display(int choice);
+    void addFacility(int choice);
+    void displayMaintenance();
+
 }

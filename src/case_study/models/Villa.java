@@ -1,25 +1,26 @@
 package case_study.models;
 
 public class Villa extends Facility {
-    private int roomStandard;
+    private String roomStandard;
     private int poolArea;
     private int floors;
 
     public Villa() {
     }
 
-    public Villa(String serviceCode, String serviceName, Double usableArea, Double rentalCosts, int maximumPeople, String rentalType, int roomStandard, int poolArea, int floors) {
+    public Villa(String serviceCode, String serviceName, Double usableArea, Double rentalCosts, int maximumPeople,
+                 String rentalType, String roomStandard, int poolArea, int floors) {
         super(serviceCode, serviceName, usableArea, rentalCosts, maximumPeople, rentalType);
         this.roomStandard = roomStandard;
         this.poolArea = poolArea;
         this.floors = floors;
     }
 
-    public int getRoomStandard() {
+    public String getRoomStandard() {
         return roomStandard;
     }
 
-    public void setRoomStandard(int roomStandard) {
+    public void setRoomStandard(String roomStandard) {
         this.roomStandard = roomStandard;
     }
 
@@ -47,7 +48,7 @@ public class Villa extends Facility {
     }
 
     public String toWrite() {
-        return getServiceCode() + "," + getServiceName() + "," + getUsableArea() + "," + getRentalCosts() + "," + getMaximumPeople() + "," +
-                "," + getRentalType() + "," + getRoomStandard() + "," + getPoolArea() + "," + getFloors();
+        return getServiceCode() + "," + getServiceName() + "," + getUsableArea() + "," + getRentalCosts() + "," +
+                getMaximumPeople() + ","+ getRentalType() + "," + getRoomStandard() + "," + getPoolArea() + "," + getFloors();
     }
 }

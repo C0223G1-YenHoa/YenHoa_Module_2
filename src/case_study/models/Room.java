@@ -26,7 +26,7 @@ public class Room extends Facility{
                 " Free Service: " + getFreeService() ;
     }
     public String toWrite(){
-        return getServiceCode() + "," + getServiceName() + "," + getUsableArea() + "," + getRentalCosts() + "," + getMaximumPeople() + "," +
+        return getServiceCode() + "," + getServiceName() + "," + getUsableArea() + "," + getRentalCosts() + "," + getMaximumPeople() +
                 "," + getRentalType() + "," + getFreeService();
     }
 }

@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class EmployeeService implements IEmployeeService {
     private  final Scanner sc = new Scanner(System.in);
-    public  final String ANSI_RESET = "\u001B[0m";
-    public  final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
     private final EmployeeRepository employeeRepository = new EmployeeRepository();
 
 
@@ -28,17 +28,24 @@ public class EmployeeService implements IEmployeeService {
         do {
             System.out.print("ID:(NV-xxxx) ");
             id = sc.nextLine();
-            if (!Validate.regexId(id)) {
-                System.out.println("Wrong format input");
+            try {
+                if (!Validate.regexId(id)) {
+                    System.out.println("Wrong format input");
+                }
+                if (employeeRepository.checkId(id)) {
+                    throw new Exception("This code already exists");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } while (!Validate.regexId(id));
         String name;
         do {
             System.out.print("Name:(Yen Hoa) ");
             name = sc.nextLine();
-            if (!Validate.regexName(name)) {
-                System.out.println("Wrong format input");
-            }
+                if (!Validate.regexName(name)) {
+                    System.out.println("Wrong format input");
+                }
         } while (!Validate.regexName(name));
         String dayOfBirth;
         boolean flag = true;

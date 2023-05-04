@@ -1,4 +1,10 @@
 package case_study.repository;
 
-public interface IBookingRepository extends IRepository{
+import case_study.models.Booking;
+
+import java.util.TreeSet;
+
+public interface IBookingRepository{
+    void addBooking(Booking booking);
+    TreeSet<Booking> displayBookingList();
 }
