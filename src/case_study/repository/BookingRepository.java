@@ -29,6 +29,7 @@ public class BookingRepository implements IBookingRepository {
             if(entry.getKey().getServiceCode().equals(booking.getServiceCode()))
                 facilityRepository.linkedHashMap.put(entry.getKey(), entry.getValue()+1);
         }
+
     }
 
     @Override

@@ -1,25 +1,29 @@
 package case_study.services;
 
 import case_study.models.Booking;
+import case_study.models.Facility;
 import case_study.repository.BookingRepository;
 import case_study.repository.FacilityRepository;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.LinkedHashMap;
 import java.util.Scanner;
 import java.util.TreeSet;
 
 public class BookingService implements IBookingService {
     private static final Scanner sc = new Scanner(System.in);
-    private BookingRepository bookingRepository = new BookingRepository();
-    protected CustomerService customerService = new CustomerService();
-    protected FacilityRepository facilityRepository = new FacilityRepository();
+    private final BookingRepository bookingRepository = new BookingRepository();
+    private final CustomerService customerService = new CustomerService();
+    private final FacilityRepository facilityRepository = new FacilityRepository();
+    private LinkedHashMap<Facility, Integer> linkedHashMap = facilityRepository.getLinkedHashMap();
+
 
     @Override
     public void addBooking() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         System.out.print("Enter Booking Code: ");
-        String bookingCode=sc.nextLine();
+        String bookingCode = sc.nextLine();
         System.out.print("Booking Date(yyyy-MM-dd): ");
         LocalDate bookingDate = LocalDate.parse(sc.nextLine(), formatter);
         System.out.print("Rental start date(yyyy-MM-dd): ");
@@ -45,6 +49,7 @@ public class BookingService implements IBookingService {
         do {
             System.out.print("Enter service code: ");
             serviceCode = sc.nextLine();
+
             try {
                 if (!(Validate.regexRO(serviceCode) | Validate.regexHO(serviceCode) | Validate.regexVl(serviceCode))) {
                     throw new Exception("Wrong format input.");
@@ -52,10 +57,26 @@ public class BookingService implements IBookingService {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
         } while (!(Validate.regexRO(serviceCode) | Validate.regexHO(serviceCode) | Validate.regexVl(serviceCode)));
-        Booking booking = new Booking(bookingCode,bookingDate, startDate, endDate, customerId, serviceCode);
-        bookingRepository.addBooking(booking);
+        boolean flag = false;
+        for (Facility f : linkedHashMap.keySet()) {
+            if (f.getServiceCode().equals(serviceCode)) {
+                if (linkedHashMap.get(f) >= 5) {
+                    flag = false;
+                } else {
+                    flag=true;
+                }
+            }
+        }
+        if(flag==true){
+            Booking booking = new Booking(bookingCode, bookingDate, startDate, endDate, customerId, serviceCode);
+            bookingRepository.addBooking(booking);
+        }else{
+            System.out.println("Service is under maintenance.");
+        }
     }
+
 
     @Override
     public void displayListBooking() {
@@ -64,5 +85,5 @@ public class BookingService implements IBookingService {
             System.out.println(b.toString());
         }
     }
-
 }
+

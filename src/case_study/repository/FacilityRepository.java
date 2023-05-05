@@ -8,11 +8,13 @@ import case_study.models.Room;
 import case_study.models.Villa;
 
 
+import java.time.LocalDate;
 import java.util.LinkedHashMap;
 
 public class FacilityRepository implements IFacilityRepository {
     protected static LinkedHashMap<Facility, Integer> linkedHashMap = new LinkedHashMap<>();
     private static final String FACILITY_PATH = "C:\\Users\\Admin\\Desktop\\YenHoa_Module_2\\src\\case_study\\data\\facility.csv";
+    private static LinkedHashMap<Facility, Integer> maintenance = new LinkedHashMap<>();
 
     static {
 
@@ -36,7 +38,7 @@ public class FacilityRepository implements IFacilityRepository {
                 "Premium", "Free_Breakfast-Wifi");
 
         linkedHashMap.put(villa, 0);
-        linkedHashMap.put(villa1, 4);
+        linkedHashMap.put(villa1, 5);
         linkedHashMap.put(villa2, 0);
         linkedHashMap.put(house, 0);
         linkedHashMap.put(house1, 0);
@@ -44,7 +46,29 @@ public class FacilityRepository implements IFacilityRepository {
         linkedHashMap.put(room, 0);
         linkedHashMap.put(room1, 0);
         linkedHashMap.put(room2, 0);
+        for (Facility f : linkedHashMap.keySet()) {
+            if (linkedHashMap.get(f) == 5) {
+                maintenance.put(f, 5);
+            }
+        }
+//        for (Facility f : maintenance.keySet()) {
+//            linkedHashMap.remove(f, 5);
+//        }
+//        maintenance();
     }
+
+//    static{
+//        LocalDate current = LocalDate.now();
+//        LocalDate firstDayOfMonth = current.withDayOfMonth(1);
+//        LocalDate firstDayOfNextMonth = firstDayOfMonth.plusMonths(1);
+//        LocalDate lastDayOfMonth = firstDayOfNextMonth.minusDays(1);
+//        if (current.isEqual(lastDayOfMonth)) {
+//            for (Facility f : linkedHashMap.keySet()) {
+//                linkedHashMap.put(f, 0);
+//                maintenance.remove(f);
+//            }
+//        }
+//    }
 
 
     @Override
@@ -63,14 +87,13 @@ public class FacilityRepository implements IFacilityRepository {
                 System.out.println(f);
             }
         }
-        WriteFacilityFile.writeFacilityFile(linkedHashMap,FACILITY_PATH);
+        WriteFacilityFile.writeFacilityFile(linkedHashMap, FACILITY_PATH);
         ReadFacilityFile.readFacility(FACILITY_PATH);
     }
 
     @Override
     public void addFacility(Facility facility) {
-        linkedHashMap.put(facility, 0);
-
+                linkedHashMap.put(facility, 0);
     }
 
     @Override
@@ -85,15 +108,33 @@ public class FacilityRepository implements IFacilityRepository {
 
     @Override
     public LinkedHashMap<Facility, Integer> displayMaintenance() {
-        LinkedHashMap<Facility, Integer> maintenance = new LinkedHashMap<>();
         for (Facility f : linkedHashMap.keySet()) {
             if (linkedHashMap.get(f) == 5) {
                 maintenance.put(f, 5);
             }
         }
 //        for (Facility f : maintenance.keySet()) {
-//            linkedHashMap.remove(f, 5);
+//            linkedHashMap.remove(f);
 //        }
         return maintenance;
     }
+
+    @Override
+    public LinkedHashMap<Facility, Integer> getLinkedHashMap() {
+        return linkedHashMap;
+    }
+
+//    public static void maintenance() {
+//        LocalDate current = LocalDate.now();
+//        LocalDate firstDayOfMonth = current.withDayOfMonth(1);
+//        LocalDate firstDayOfNextMonth = firstDayOfMonth.plusMonths(1);
+//        LocalDate lastDayOfMonth = firstDayOfNextMonth.minusDays(1);
+//        if (current.isEqual(lastDayOfMonth)) {
+//            for (Facility f : linkedHashMap.keySet()) {
+//                linkedHashMap.put(f, 0);
+//                maintenance.remove(f);
+//            }
+//        }
+//
+//    }
 }

@@ -9,7 +9,8 @@ public interface IContractRepository{
      void createContract(Contract contract);
      Queue<Contract> getListContract();
      Queue<Booking> getBookingQueue();
-     void editContract(Contract contract);
+     void editContract(String code);
      Contract findContract(String code);
      boolean checkBookingCode(String bookingCode);
+
 }

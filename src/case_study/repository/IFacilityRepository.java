@@ -9,4 +9,5 @@ public interface IFacilityRepository {
     void addFacility(Facility facility);
     boolean checkId(String id);
     LinkedHashMap<Facility,Integer> displayMaintenance();
+    LinkedHashMap<Facility,Integer> getLinkedHashMap();
 }
